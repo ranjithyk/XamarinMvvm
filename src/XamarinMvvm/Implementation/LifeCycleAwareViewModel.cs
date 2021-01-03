@@ -12,7 +12,6 @@ namespace XamarinMvvm
         public INavigationService RootNavigation { get; internal set; }
         public LifeCycleAwareViewModel PreviousViewModel { get; internal set; }
         public bool IsModal { get; internal set; }
-        public bool Title { get; set; }
 
         #region View life cycle events
 

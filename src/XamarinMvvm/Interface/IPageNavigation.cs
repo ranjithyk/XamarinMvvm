@@ -7,6 +7,7 @@ namespace XamarinMvvm
     {
         NavigationPage NavigationPage { get; set; }
         INavigation Navigation { get; }
+        Task NavigateToAsync(IPageContainer pageContainer, object paramter = null, bool animate = true);
         Task NavigateToAsync<TViewModel>(object parameter = null, bool animate = true) where TViewModel : LifeCycleAwareViewModel;
         Task NavigateToModalAsync<TViewModel>(object parameter = null, bool animate = true) where TViewModel : LifeCycleAwareViewModel;
         Task NavigateBackAsync();

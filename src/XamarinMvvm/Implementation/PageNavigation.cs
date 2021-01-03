@@ -37,9 +37,18 @@ namespace XamarinMvvm
 
         public INavigation Navigation => NavigationPage?.Navigation;
 
+        public async Task NavigateToAsync(IPageContainer pageContainer, object paramter = null, bool animate = true)
+        {
+            if (Navigation == null) return;
+
+            var page = pageContainer.CreatePage();
+            await Navigation.PushAsync(page, animate);
+            _isModalOnTop = false;
+        }
+
         public async Task NavigateToAsync<TViewModel>(object parameter = null, bool animate = true) where TViewModel : LifeCycleAwareViewModel
         {
-            if (Navigation != null) return;
+            if (Navigation == null) return;
 
             var page = FindAndCreatePage<TViewModel>(parameter);
             await Navigation.PushAsync(page, animate);
@@ -48,7 +57,7 @@ namespace XamarinMvvm
 
         public async Task NavigateToModalAsync<TViewModel>(object parameter = null, bool animate = true) where TViewModel : LifeCycleAwareViewModel
         {
-            if (Navigation != null) return;
+            if (Navigation == null) return;
 
             var page = FindAndCreatePage<TViewModel>(parameter, true);
             await Navigation.PushModalAsync(page, animate);
@@ -57,7 +66,7 @@ namespace XamarinMvvm
 
         public async Task NavigateBackAsync()
         {
-            if (Navigation != null) return;
+            if (Navigation == null) return;
 
             if (_isModalOnTop)
                 await Navigation.PopModalAsync();
@@ -67,7 +76,7 @@ namespace XamarinMvvm
 
         public async Task NavigateBackAsync(object parameter)
         {
-            if (Navigation != null) return;
+            if (Navigation == null) return;
 
             if (_isModalOnTop)
             {
@@ -89,7 +98,7 @@ namespace XamarinMvvm
 
         public async Task NavigateToRootAsync()
         {
-            if (Navigation != null) return;
+            if (Navigation == null) return;
 
             var pagesToPop = Navigation.NavigationStack.Skip(1);
             await Navigation.PopToRootAsync();
