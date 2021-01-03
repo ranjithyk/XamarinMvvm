@@ -20,6 +20,8 @@ namespace XamarinMvvm
             }
         }
 
+        public static INavigationService NavigationService => Container.Resolve<INavigationService>();
+
         public static void OverrideContainer(XamarinTinyIoCContainer overrideContainer)
         {
             _xamarinTinyIoCContainer = overrideContainer;

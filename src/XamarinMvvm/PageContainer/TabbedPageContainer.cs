@@ -2,23 +2,21 @@
 
 namespace XamarinMvvm
 {
-    public class TabbedPageContainer : IPageContainer
+    public class TabbedPageContainer : TabbedPage, IPageContainer
     {
-        readonly TabbedPage tabbedPage;
-
         public TabbedPageContainer()
         {
-            tabbedPage = new TabbedPage();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         public void AddTab<TViewModel>(object parameter, string title, string icon) where TViewModel : LifeCycleAwareViewModel
         {
-            tabbedPage.Children.Add(new NavigationPageContainer<TViewModel>() { Title = title, Icon = icon }.CreatePage(parameter));
+            Children.Add(new NavigationPageContainer<TViewModel>(parameter) { Title = title, IconImageSource = icon }.GetPage());
         }
 
-        public Page CreatePage(object parameter = null)
+        public Page GetPage()
         {
-            return tabbedPage;
+            return this;
         }
     }
 }

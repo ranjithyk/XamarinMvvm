@@ -35,13 +35,13 @@ namespace XamarinMvvm
             }
         }
 
-        public INavigation Navigation => NavigationPage?.Navigation;
+        public INavigation Navigation => NavigationPage?.Navigation ?? MvvmIoc.NavigationService.Navigation();
 
-        public async Task NavigateToAsync(IPageContainer pageContainer, object paramter = null, bool animate = true)
+        public async Task NavigateToAsync(IPageContainer pageContainer, bool animate = true)
         {
             if (Navigation == null) return;
 
-            var page = pageContainer.CreatePage();
+            var page = pageContainer.GetPage();
             await Navigation.PushAsync(page, animate);
             _isModalOnTop = false;
         }
@@ -107,8 +107,8 @@ namespace XamarinMvvm
 
         public async Task StartNewNavigationAsync<TViewModel>(object parameter = null, bool animate = true) where TViewModel : LifeCycleAwareViewModel
         {
-            var navigationPage = new NavigationPageContainer<TViewModel>();
-            var page = navigationPage.CreatePage(parameter);
+            var navigationPage = new NavigationPageContainer<TViewModel>(parameter);
+            var page = navigationPage.GetPage();
             await Navigation.PushAsync(page, animate);
         }
 

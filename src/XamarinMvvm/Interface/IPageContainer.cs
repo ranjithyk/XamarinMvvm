@@ -4,6 +4,6 @@ namespace XamarinMvvm
 {
     public interface IPageContainer
     {
-        Page CreatePage(object parameter = null);
+        Page GetPage();
     }
 }

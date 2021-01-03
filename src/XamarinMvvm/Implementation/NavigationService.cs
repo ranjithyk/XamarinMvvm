@@ -1,15 +1,20 @@
-﻿using Xamarin.Forms;
+﻿using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace XamarinMvvm
 {
     public class NavigationService : INavigationService
     {
-        private readonly IViewGenerator _viewGenerator;
         private IApplication _application;
 
-        public NavigationService(IViewGenerator viewGenerator)
+        public IApplication Application()
         {
-            _viewGenerator = viewGenerator;
+            return _application;
+        }
+
+        public INavigation Navigation()
+        {
+            return _application.MainPage.Navigation;
         }
 
         public void StartApplication(IApplication application)
@@ -17,24 +22,41 @@ namespace XamarinMvvm
             _application = application;
         }
 
-        public void SwitchRoot(IPageContainer pageContainer, object parameter = null)
+        public void StartApplication(IApplication application, IPageContainer pageContainer)
         {
-            var page = pageContainer.CreatePage(parameter);
-            _application.MainPage = page;
+            _application = application;
+            SwitchRoot(pageContainer);
+        }
+
+        public void StartApplication<TViewModel>(IApplication application, bool navigatable, object parameter = null) where TViewModel : LifeCycleAwareViewModel
+        {
+            _application = application;
+            if (navigatable)
+                SwitchRootWithNavigation<TViewModel>(parameter);
+            else
+                SwitchRoot<TViewModel>(parameter);
+        }
+
+        public void SwitchRoot(IPageContainer pageContainer)
+        {
+            _application.MainPage = pageContainer.GetPage();
         }
 
         public void SwitchRoot<TViewModel>(object parameter = null) where TViewModel : LifeCycleAwareViewModel
         {
             var pageNavigation = new PageNavigation(MvvmIoc.Container.Resolve<IViewGenerator>());
-            var page = pageNavigation.FindAndCreatePage<TViewModel>(parameter);
-            _application.MainPage = page;
+            _application.MainPage = pageNavigation.FindAndCreatePage<TViewModel>(parameter);
         }
 
         public void SwitchRootWithNavigation<TViewModel>(object parameter = null) where TViewModel : LifeCycleAwareViewModel
         {
-            var navigationPage = new NavigationPageContainer<TViewModel>();
-            var page = navigationPage.CreatePage(parameter);
-            _application.MainPage = page;
+            _application.MainPage = new NavigationPageContainer<TViewModel>(parameter);
+        }
+
+        public async Task NavigateBackAsync()
+        {
+            if (Navigation() == null) return;
+            await Navigation().PopAsync();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace XamarinMvvm
     public class ViewGenerator : IViewGenerator
     {
         readonly Dictionary<Type, Type> _viewodelPage;
-        string _viewSuffix = "View";
+        string _viewSuffix = "Page";
         string _viewModelSuffix = "ViewModel";
 
         public ViewGenerator()
