@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BasePage
+    x:Class="XamarinMvvm.Sample.Page.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:XamarinMvvm.Sample.Page"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid
+            BackgroundColor="WhiteSmoke"
+            ColumnDefinitions="*, *, *"
+            RowDefinitions="*,Auto,*">
+            <StackLayout
+                Grid.Row="1"
+                Grid.Column="1"
+                Padding="20"
+                BackgroundColor="White"
+                Spacing="20">
+                <Label
+                    Margin="20"
+                    FontSize="24"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Login"
+                    VerticalOptions="CenterAndExpand" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    Placeholder="Enter Username"
+                    Text="{Binding UserName}" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    Placeholder="Enter Password"
+                    Text="{Binding Password}" />
+                <Button
+                    BackgroundColor="AliceBlue"
+                    Command="{Binding LoginCommand}"
+                    Text="Login"
+                    TextColor="BlueViolet" />
+                <Button
+                    BackgroundColor="Transparent"
+                    Command="{Binding TabCommand}"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Tab"
+                    TextColor="BlueViolet" />
+                <Button
+                    BackgroundColor="Transparent"
+                    Command="{Binding RegisterCommand}"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Register"
+                    TextColor="BlueViolet" />
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</pages:BasePage>

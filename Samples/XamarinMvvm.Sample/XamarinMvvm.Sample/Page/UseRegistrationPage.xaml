@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BasePage
+    x:Class="XamarinMvvm.Sample.Page.UseRegistrationPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:XamarinMvvm.Sample.Page"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                Text="Register"
+                VerticalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</pages:BasePage>
