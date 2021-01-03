@@ -78,22 +78,13 @@ namespace XamarinMvvm
         {
             if (Navigation == null) return;
 
-            if (_isModalOnTop)
+            var currentViewModel = GetCurrentViewModel();
+            if (currentViewModel?.PreviousViewModel != null)
             {
-                if (Navigation.ModalStack.FirstOrDefault()?.BindingContext is LifeCycleAwareViewModel lifeCycleAwareViewModel)
-                {
-                    await lifeCycleAwareViewModel.PreviousViewModel?.OnReverseInt(parameter);
-                }
-            }
-            else
-            {
-                if (Navigation.NavigationStack.FirstOrDefault()?.BindingContext is LifeCycleAwareViewModel lifeCycleAwareViewModel)
-                {
-                    await lifeCycleAwareViewModel.PreviousViewModel?.OnReverseInt(parameter);
-                }
+                await currentViewModel.PreviousViewModel.OnReverseInt(parameter);
             }
 
-            await NavigateBackAsync(parameter);
+            await NavigateBackAsync();
         }
 
         public async Task NavigateToRootAsync()
@@ -117,6 +108,7 @@ namespace XamarinMvvm
             var bindingContext = MvvmIoc.Container.Resolve<TViewModel>();
             bindingContext.RootNavigation = MvvmIoc.Container.Resolve<INavigationService>();
             bindingContext.PageNavigation = this;
+            bindingContext.PreviousViewModel = GetCurrentViewModel();
             bindingContext.IsModal = modal;
             bindingContext.OnInt(parameter);
             var page = _viewGenerator.FindAndCreatePage<TViewModel>();
@@ -159,6 +151,19 @@ namespace XamarinMvvm
         {
             page.Appearing -= bindingContext.ViewIsAppearing;
             page.Disappearing -= bindingContext.ViewIsDisappearing;
+        }
+
+        private LifeCycleAwareViewModel GetCurrentViewModel()
+        {
+            if (Navigation == null) return null;
+
+            var lastPage = _isModalOnTop ? Navigation.ModalStack.LastOrDefault() : Navigation.NavigationStack.LastOrDefault();
+            if (lastPage?.BindingContext is LifeCycleAwareViewModel lifeCycleAwareViewModel)
+            {
+                return lifeCycleAwareViewModel;
+            }
+
+            return null;
         }
     }
 }
