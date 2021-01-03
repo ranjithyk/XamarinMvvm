@@ -35,18 +35,23 @@
                     Command="{Binding LoginCommand}"
                     Text="Login"
                     TextColor="BlueViolet" />
-                <Button
-                    BackgroundColor="Transparent"
-                    Command="{Binding TabCommand}"
+                <Label
+                    FontSize="12"
                     HorizontalOptions="CenterAndExpand"
-                    Text="Tab"
-                    TextColor="BlueViolet" />
-                <Button
-                    BackgroundColor="Transparent"
-                    Command="{Binding RegisterCommand}"
-                    HorizontalOptions="CenterAndExpand"
-                    Text="Register"
-                    TextColor="BlueViolet" />
+                    Text="{Binding Message}"
+                    TextColor="OrangeRed" />
+                <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal">
+                    <Button
+                        BackgroundColor="Transparent"
+                        Command="{Binding TabCommand}"
+                        Text="Tab"
+                        TextColor="BlueViolet" />
+                    <Button
+                        BackgroundColor="Transparent"
+                        Command="{Binding RegisterCommand}"
+                        Text="Register"
+                        TextColor="BlueViolet" />
+                </StackLayout>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

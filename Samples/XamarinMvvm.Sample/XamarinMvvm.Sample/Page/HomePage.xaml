@@ -23,6 +23,7 @@
                 BackgroundColor="Transparent"
                 Command="{Binding BackCommand}"
                 HorizontalOptions="CenterAndExpand"
+                IsVisible="{Binding IsInNavTab}"
                 Text="Back"
                 TextColor="BlueViolet"
                 VerticalOptions="End" />
