@@ -1,7 +1,6 @@
 ﻿using PropertyChanged;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace XamarinMvvm.Sample.ViewModel
 {
@@ -10,7 +9,7 @@ namespace XamarinMvvm.Sample.ViewModel
     {
         public BaseViewModel()
         {
-            BackCommand = new Command(async () => await OnNavigateBackAsync());
+            BackCommand = new AsyncCommand(OnNavigateBackAsync);
         }
 
         public ICommand BackCommand { get; }

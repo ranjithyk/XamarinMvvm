@@ -1,7 +1,6 @@
 ﻿using PropertyChanged;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace XamarinMvvm.Sample.ViewModel
 {
@@ -10,9 +9,9 @@ namespace XamarinMvvm.Sample.ViewModel
     {
         public LoginViewModel()
         {
-            LoginCommand = new Command(OnLogin);
-            TabCommand = new Command(OnTab);
-            RegisterCommand = new Command(async () => await OnRegister());
+            LoginCommand = new AsyncCommand(OnLogin);
+            TabCommand = new AsyncCommand(OnTab);
+            RegisterCommand = new AsyncCommand(async () => await OnRegister());
         }
 
         public ICommand LoginCommand { get; }

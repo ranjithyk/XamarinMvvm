@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace XamarinMvvm.Sample.ViewModel
 {
@@ -8,7 +7,7 @@ namespace XamarinMvvm.Sample.ViewModel
     {
         public UseRegistrationViewModel()
         {
-            RegisterCommand = new Command(async () => await OnRegister());
+            RegisterCommand = new AsyncCommand(OnRegister);
         }
 
         public ICommand RegisterCommand { get; }

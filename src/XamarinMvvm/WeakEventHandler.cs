@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace XamarinMvvm
 {
-	public delegate Task ActionAsync();
-
 	public sealed class WeakEventHandler<TEventArgs> where TEventArgs : EventArgs
 	{
 		private readonly WeakReference _targetReference;

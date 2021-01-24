@@ -1,7 +1,6 @@
 ﻿using PropertyChanged;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace XamarinMvvm.Sample.ViewModel
 {
@@ -10,8 +9,8 @@ namespace XamarinMvvm.Sample.ViewModel
     {
         public HomeViewModel()
         {
-            LogoutCommand = new Command(OnLogout);
-            TabCommand = new Command(OnTab);
+            LogoutCommand = new AsyncCommand(OnLogout);
+            TabCommand = new AsyncCommand(OnTab);
             Title = "Home Page";
         }
 
