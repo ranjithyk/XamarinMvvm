@@ -40,15 +40,16 @@
                     HorizontalOptions="CenterAndExpand"
                     Text="{Binding Message}"
                     TextColor="OrangeRed" />
-                <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal">
-                    <Button
-                        BackgroundColor="Transparent"
-                        Command="{Binding TabCommand}"
-                        Text="Tab"
-                        TextColor="BlueViolet" />
+                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                    <CheckBox IsChecked="{Binding IsNonContainerNavigation}" Color="BlueViolet" />
+                    <Label
+                        Text="Non Container Navigation"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
                     <Button
                         BackgroundColor="Transparent"
                         Command="{Binding RegisterCommand}"
+                        HorizontalOptions="EndAndExpand"
                         Text="Register"
                         TextColor="BlueViolet" />
                 </StackLayout>

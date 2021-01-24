@@ -3,9 +3,9 @@ using System.Windows.Input;
 
 namespace XamarinMvvm.Sample.ViewModel
 {
-    public class UseRegistrationViewModel : BaseViewModel
+    public class RegistrationViewModel : BaseViewModel
     {
-        public UseRegistrationViewModel()
+        public RegistrationViewModel()
         {
             RegisterCommand = new AsyncCommand(OnRegister);
         }

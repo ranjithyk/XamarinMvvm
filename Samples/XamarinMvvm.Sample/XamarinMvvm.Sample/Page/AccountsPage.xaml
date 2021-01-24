@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BasePage
+    x:Class="XamarinMvvm.Sample.Page.AccountsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:XamarinMvvm.Sample.Page">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label
+                FontSize="Header"
+                HorizontalOptions="CenterAndExpand"
+                Text="{Binding UserName, StringFormat='Welcome {0}'}" />
+
+            <StackLayout
+                Margin="0,16"
+                HorizontalOptions="CenterAndExpand"
+                Orientation="Horizontal"
+                Spacing="60"
+                VerticalOptions="EndAndExpand">
+
+                <Button
+                    BackgroundColor="Transparent"
+                    Command="{Binding BackCommand}"
+                    Text="Back"
+                    TextColor="BlueViolet"
+                    VerticalOptions="End" />
+
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <CheckBox IsChecked="{Binding IsNonContainerNavigation}" Color="BlueViolet" />
+                        <Label
+                            Text="Non Container Navigation"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
+                    </StackLayout>
+                    <Button
+                        BackgroundColor="Transparent"
+                        Command="{Binding TabCommand}"
+                        Text="New Tab navigation"
+                        TextColor="BlueViolet" />
+                </StackLayout>
+
+                <Button
+                    BackgroundColor="AliceBlue"
+                    Command="{Binding LogoutCommand}"
+                    Text="Logout"
+                    TextColor="BlueViolet"
+                    VerticalOptions="End" />
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</pages:BasePage>

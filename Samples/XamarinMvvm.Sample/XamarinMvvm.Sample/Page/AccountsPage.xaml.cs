@@ -3,9 +3,9 @@
 namespace XamarinMvvm.Sample.Page
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class UseRegistrationPage : BasePage
+    public partial class AccountsPage : BasePage
     {
-        public UseRegistrationPage()
+        public AccountsPage()
         {
             InitializeComponent();
         }

@@ -10,16 +10,15 @@ namespace XamarinMvvm.Sample.ViewModel
         public LoginViewModel()
         {
             LoginCommand = new AsyncCommand(OnLogin);
-            TabCommand = new AsyncCommand(OnTab);
-            RegisterCommand = new AsyncCommand(async () => await OnRegister());
+            RegisterCommand = new AsyncCommand(OnRegister);
         }
 
         public ICommand LoginCommand { get; }
         public ICommand RegisterCommand { get; }
-        public ICommand TabCommand { get; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Message { get; set; }
+        public bool IsNonContainerNavigation { get; set; }
 
         protected override void OnInit(object parameter = null)
         {
@@ -31,7 +30,7 @@ namespace XamarinMvvm.Sample.ViewModel
 
         protected override void OnAppearing()
         {
-            UserName = "Rajith";
+            UserName = "Ranjith";
         }
 
         protected override void OnReverseInit(object parameter = null)
@@ -60,24 +59,31 @@ namespace XamarinMvvm.Sample.ViewModel
 
             if (string.Equals(Password, "1234"))
             {
-                RootNavigation.SwitchRootWithNavigation<HomeViewModel>(UserName);
+                TabPage();
             }
 
             Message = "Incorrect password \n Hint: 1234";
         }
 
-        private void OnTab()
+        private void TabPage()
         {
-            var tabbedContainer = new TabbedNavigationPageContainer();
-            tabbedContainer.AddTab<HomeViewModel>(true, "Home", null);
-            tabbedContainer.AddTab<UseRegistrationViewModel>(null, "Register", null);
-            tabbedContainer.AddTab<LoginViewModel>(null, "Login", null);
-            PageNavigation.NavigateToAsync(tabbedContainer);
+            if (IsNonContainerNavigation)
+            {
+                RootNavigation.SwitchRootWithNavigation<HomeTabbedViewModel>(UserName);
+            }
+            else
+            {
+                var tabbedContainer = new TabbedNavigationPageContainer();
+                tabbedContainer.AddTab<HomeViewModel>(true, "Home", null);
+                tabbedContainer.AddTab<CatalogViewModel>(null, "Catalog", null);
+                tabbedContainer.AddTab<AccountsViewModel>(UserName, "Accounts", null);
+                PageNavigation.NavigateToAsync(tabbedContainer);
+            }
         }
 
         private async Task OnRegister()
         {
-            await PageNavigation.NavigateToAsync<UseRegistrationViewModel>();
+            await PageNavigation.NavigateToAsync<RegistrationViewModel>();
         }
 
         protected override void OnDisappearing()

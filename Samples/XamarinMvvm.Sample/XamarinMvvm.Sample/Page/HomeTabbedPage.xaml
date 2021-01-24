@@ -3,8 +3,9 @@
     x:Class="XamarinMvvm.Sample.Page.HomeTabbedPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pages="clr-namespace:XamarinMvvm.Sample.Page">
+    xmlns:pages="clr-namespace:XamarinMvvm.Sample.Page"
+    NavigationPage.HasNavigationBar="False">
     <pages:HomePage Title="Home" />
-    <pages:UseRegistrationPage Title="Register" />
-    <pages:LoginPage Title="Login" />
+    <pages:CatalogPage Title="Catalog" />
+    <pages:AccountsPage Title="Accounts" />
 </TabbedPage>

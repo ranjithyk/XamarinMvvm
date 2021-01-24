@@ -3,11 +3,11 @@
 namespace XamarinMvvm.Sample.ViewModel
 {
     [AddINotifyPropertyChangedInterface]
-    public class HomeViewModel : BaseViewModel
+    public class CatalogViewModel : BaseViewModel
     {
-        public HomeViewModel()
+        public CatalogViewModel()
         {
-            Title = "Home";
+            Title = "Catalog";
         }
     }
 }
