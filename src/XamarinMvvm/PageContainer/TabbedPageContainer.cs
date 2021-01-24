@@ -10,11 +10,6 @@ namespace XamarinMvvm
     public class TabbedPageContainer : TabbedPage, IPageContainer
     {
         /// <summary>
-        /// The page navigation
-        /// </summary>
-        readonly PageNavigation pageNavigation = new PageNavigation(MvvmIoc.Container.Resolve<IViewGenerator>());
-
-        /// <summary>
         /// Adds the tab.
         /// </summary>
         /// <typeparam name="TViewModel">The type of the view model.</typeparam>
@@ -23,7 +18,7 @@ namespace XamarinMvvm
         /// <param name="icon">The icon.</param>
         public void AddTab<TViewModel>(object parameter, string title, string icon) where TViewModel : LifeCycleAwareViewModel
         {
-            var page = pageNavigation.FindAndCreatePage<TViewModel>(parameter);
+            var page = MvvmIoc.Container.Resolve<IPageNavigation>().FindAndCreatePage<TViewModel>(parameter);
             page.Title = title;
             page.IconImageSource = icon;
             Children.Add(page);

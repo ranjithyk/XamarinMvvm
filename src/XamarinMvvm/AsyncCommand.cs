@@ -220,8 +220,7 @@ namespace XamarinMvvm
 
         public void Execute(object parameter)
         {
-            if (_executeAsync != null)
-                 _= ExecuteAsync(parameter);
+            ExecuteAsync(parameter).ConfigureAwait(false);
         }
     }
 }

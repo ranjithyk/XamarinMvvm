@@ -29,7 +29,7 @@ namespace XamarinMvvm
         /// <returns></returns>
         public INavigation Navigation()
         {
-            return _application.MainPage.Navigation;
+            return _application.MainPage?.Navigation;
         }
 
         /// <summary>
@@ -74,6 +74,7 @@ namespace XamarinMvvm
         /// <param name="pageContainer">The page container.</param>
         public void SwitchRoot(IPageContainer pageContainer)
         {
+            DiposePages();
             _application.MainPage = pageContainer.GetPage();
         }
 
@@ -84,8 +85,8 @@ namespace XamarinMvvm
         /// <param name="parameter">The parameter.</param>
         public void SwitchRoot<TViewModel>(object parameter = null) where TViewModel : LifeCycleAwareViewModel
         {
-            var pageNavigation = new PageNavigation(MvvmIoc.Container.Resolve<IViewGenerator>());
-            _application.MainPage = pageNavigation.FindAndCreatePage<TViewModel>(parameter);
+            DiposePages();
+            _application.MainPage = MvvmIoc.Container.Resolve<IPageNavigation>().FindAndCreatePage<TViewModel>(parameter);
         }
 
         /// <summary>
@@ -95,6 +96,7 @@ namespace XamarinMvvm
         /// <param name="parameter">The parameter.</param>
         public void SwitchRootWithNavigation<TViewModel>(object parameter = null) where TViewModel : LifeCycleAwareViewModel
         {
+            DiposePages();
             _application.MainPage = new NavigationPageContainer<TViewModel>(parameter);
         }
 
@@ -105,6 +107,11 @@ namespace XamarinMvvm
         {
             if (Navigation() == null) return;
             await Navigation().PopAsync();
+        }
+
+        private void DiposePages()
+        {
+            if (Navigation() == null) return;
         }
     }
 }

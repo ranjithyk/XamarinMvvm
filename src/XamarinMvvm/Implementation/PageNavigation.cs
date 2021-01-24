@@ -173,19 +173,48 @@ namespace XamarinMvvm
         /// <param name="parameter">The parameter.</param>
         /// <param name="modal">if set to <c>true</c> [modal].</param>
         /// <returns></returns>
-        internal Page FindAndCreatePage<TViewModel>(object parameter = null, bool modal = false) where TViewModel : LifeCycleAwareViewModel
+        public Page FindAndCreatePage<TViewModel>(object parameter = null, bool modal = false) where TViewModel : LifeCycleAwareViewModel
         {
-            var bindingContext = MvvmIoc.Container.Resolve<TViewModel>();
-            bindingContext.RootNavigation = MvvmIoc.Container.Resolve<INavigationService>();
-            bindingContext.PageNavigation = this;
-            bindingContext.PreviousViewModel = GetCurrentViewModel();
-            bindingContext.IsModal = modal;
-            bindingContext.OnInit(parameter);
-            bindingContext.OnInitAsync(parameter);
+            var bindingContext = ResolveViewModel<TViewModel>(parameter, modal);
             var page = _viewGenerator.FindAndCreatePage<TViewModel>();
             WireViewLifeCycleEvents(page, bindingContext);
             page.BindingContext = bindingContext;
             return page;
+        }
+
+        /// <summary>
+        /// Resolves the view model.
+        /// </summary>
+        /// <typeparam name="TViewModel">The type of the view model.</typeparam>
+        /// <param name="parameter">The parameter.</param>
+        /// <param name="modal">if set to <c>true</c> [modal].</param>
+        /// <returns></returns>
+        public TViewModel ResolveViewModel<TViewModel>(object parameter = null, bool modal = false) where TViewModel : LifeCycleAwareViewModel
+        {
+            var viewModel = MvvmIoc.Container.Resolve<TViewModel>();
+            viewModel.RootNavigation = MvvmIoc.Container.Resolve<INavigationService>();
+            viewModel.PageNavigation = this;
+            viewModel.PreviousViewModel = GetCurrentViewModel();
+            viewModel.IsModal = modal;
+            viewModel.OnInit(parameter);
+            viewModel.OnInitAsync(parameter);
+            return viewModel;
+        }
+
+        /// <summary>
+        /// Resolves the and wire view model.
+        /// </summary>
+        /// <typeparam name="TViewModel">The type of the view model.</typeparam>
+        /// <param name="page">The page.</param>
+        /// <param name="parameter">The parameter.</param>
+        /// <param name="modal">if set to <c>true</c> [modal].</param>
+        /// <returns></returns>
+        public TViewModel ResolveAndWireViewModel<TViewModel>(Page page, object parameter = null, bool modal = false) where TViewModel : LifeCycleAwareViewModel
+        {
+            var viewModel = ResolveViewModel<TViewModel>(parameter, modal);
+            WireViewLifeCycleEvents(page, viewModel);
+            page.BindingContext = viewModel;
+            return viewModel;
         }
 
         /// <summary>
@@ -202,7 +231,7 @@ namespace XamarinMvvm
         /// Pops the pages.
         /// </summary>
         /// <param name="pages">The pages.</param>
-        private void PopPages(IEnumerable<Page> pages)
+        internal void PopPages(IEnumerable<Page> pages)
         {
             foreach (Page page in pages)
             {

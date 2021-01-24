@@ -1,4 +1,5 @@
-﻿using XamarinIoc;
+﻿using Xamarin.Forms;
+using XamarinIoc;
 
 namespace XamarinMvvm
 {
@@ -58,6 +59,19 @@ namespace XamarinMvvm
             _xamarinTinyIoCContainer.Register<IViewGenerator, ViewGenerator>();
             _xamarinTinyIoCContainer.Register<INavigationService, NavigationService>();
             _xamarinTinyIoCContainer.Register<IPageNavigation, PageNavigation>().AsMultiInstance();
+        }
+
+        /// <summary>
+        /// Resolves the view model.
+        /// </summary>
+        /// <typeparam name="TViewModel">The type of the view model.</typeparam>
+        /// <param name="page">The page.</param>
+        /// <param name="parameter">The parameter.</param>
+        /// <param name="modal">if set to <c>true</c> [modal].</param>
+        /// <returns></returns>
+        public static TViewModel ResolveAndBindViewModel<TViewModel>(Page page, object parameter = null, bool modal = false) where TViewModel : LifeCycleAwareViewModel
+        {
+            return Container.Resolve<IPageNavigation>().ResolveAndWireViewModel<TViewModel>(page, parameter, modal);
         }
     }
 }
