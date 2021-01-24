@@ -33,6 +33,12 @@ namespace XamarinMvvm.Sample.ViewModel
             UserName = "Ranjith";
         }
 
+        protected override async Task OnAppearingAsync()
+        {
+            await Task.Delay(2000);
+            Password = "1234";
+        }
+
         protected override void OnReverseInit(object parameter = null)
         {
             if (parameter != null)
