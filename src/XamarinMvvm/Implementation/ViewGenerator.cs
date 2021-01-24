@@ -4,17 +4,39 @@ using Xamarin.Forms;
 
 namespace XamarinMvvm
 {
+    /// <summary>
+    /// ViewGenerator.
+    /// Generates view for viewmodels
+    /// </summary>
+    /// <seealso cref="XamarinMvvm.IViewGenerator" />
     public class ViewGenerator : IViewGenerator
     {
+        /// <summary>
+        /// The viewodel page
+        /// </summary>
         readonly Dictionary<Type, Type> _viewodelPage;
+        /// <summary>
+        /// The view suffix
+        /// </summary>
         string _viewSuffix = "Page";
+        /// <summary>
+        /// The view model suffix
+        /// </summary>
         string _viewModelSuffix = "ViewModel";
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ViewGenerator"/> class.
+        /// </summary>
         public ViewGenerator()
         {
             _viewodelPage = new Dictionary<Type, Type>();
         }
 
+        /// <summary>
+        /// Registers the page.
+        /// </summary>
+        /// <typeparam name="TViewModel">The type of the view model.</typeparam>
+        /// <typeparam name="TPage">The type of the page.</typeparam>
         public void RegisterPage<TViewModel, TPage>() where TViewModel : LifeCycleAwareViewModel where TPage : Page
         {
             if (_viewodelPage.ContainsKey(typeof(TViewModel)))
@@ -23,6 +45,11 @@ namespace XamarinMvvm
                 _viewodelPage.Add(typeof(TViewModel), typeof(TPage));
         }
 
+        /// <summary>
+        /// Finds the and create page.
+        /// </summary>
+        /// <typeparam name="TViewModel">The type of the view model.</typeparam>
+        /// <returns></returns>
         public Page FindAndCreatePage<TViewModel>() where TViewModel : LifeCycleAwareViewModel
         {
             var pageType = FindPageForViewModel(typeof(TViewModel));
@@ -30,12 +57,23 @@ namespace XamarinMvvm
             return page;
         }
 
+        /// <summary>
+        /// Sets the view and view model suffix.
+        /// </summary>
+        /// <param name="viewSuffix">The view suffix.</param>
+        /// <param name="viewModelSuffix">The view model suffix.</param>
         public void SetViewAndViewModelSuffix(string viewSuffix, string viewModelSuffix)
         {
             _viewSuffix = viewSuffix;
             _viewModelSuffix = viewModelSuffix;
         }
 
+        /// <summary>
+        /// Finds the page for view model.
+        /// </summary>
+        /// <param name="viewModelType">Type of the view model.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         protected virtual Type FindPageForViewModel(Type viewModelType)
         {
             if (_viewodelPage.ContainsKey(viewModelType))

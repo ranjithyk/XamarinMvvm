@@ -2,10 +2,22 @@
 
 namespace XamarinMvvm
 {
+    /// <summary>
+    /// MvvmIoc
+    /// </summary>
     public static class MvvmIoc
     {
+        /// <summary>
+        /// The xamarin tiny io c container
+        /// </summary>
         static XamarinTinyIoCContainer _xamarinTinyIoCContainer;
 
+        /// <summary>
+        /// Gets the container.
+        /// </summary>
+        /// <value>
+        /// The container.
+        /// </value>
         public static XamarinTinyIoCContainer Container
         {
             get
@@ -20,14 +32,27 @@ namespace XamarinMvvm
             }
         }
 
+        /// <summary>
+        /// Gets the navigation service.
+        /// </summary>
+        /// <value>
+        /// The navigation service.
+        /// </value>
         public static INavigationService NavigationService => Container.Resolve<INavigationService>();
 
+        /// <summary>
+        /// Overrides the container.
+        /// </summary>
+        /// <param name="overrideContainer">The override container.</param>
         public static void OverrideContainer(XamarinTinyIoCContainer overrideContainer)
         {
             _xamarinTinyIoCContainer = overrideContainer;
             Init();
         }
 
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
         private static void Init()
         {
             _xamarinTinyIoCContainer.Register<IViewGenerator, ViewGenerator>();

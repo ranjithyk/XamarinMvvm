@@ -17,28 +17,29 @@ namespace XamarinMvvm.Sample.ViewModel
         public ICommand LoginCommand { get; }
         public ICommand RegisterCommand { get; }
         public ICommand TabCommand { get; }
-        public string UserName { get; set; } = "Ranjith";
+        public string UserName { get; set; }
         public string Password { get; set; }
         public string Message { get; set; }
 
-        protected override Task OnInt(object parameter = null)
+        protected override void OnInit(object parameter = null)
         {
             if (parameter != null)
             {
                 Message = parameter.ToString();
             }
-
-            return base.OnInt(parameter);
         }
 
-        protected override Task OnReverseInt(object parameter = null)
+        protected override void OnAppearing()
+        {
+            UserName = "Rajith";
+        }
+
+        protected override void OnReverseInit(object parameter = null)
         {
             if (parameter != null)
             {
                 Message = parameter.ToString();
             }
-
-            return base.OnReverseInt(parameter);
         }
 
         private void OnLogin()
@@ -79,10 +80,9 @@ namespace XamarinMvvm.Sample.ViewModel
             await PageNavigation.NavigateToAsync<UseRegistrationViewModel>();
         }
 
-        protected override Task OnDisappearing()
+        protected override void OnDisappearing()
         {
             Message = string.Empty;
-            return base.OnDisappearing();
         }
     }
 }

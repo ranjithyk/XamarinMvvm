@@ -19,7 +19,7 @@ namespace XamarinMvvm.Sample.ViewModel
         public string UserName { get; set; }
         public bool IsInNavTab { get; set; }
 
-        protected override Task OnInt(object parameter = null)
+        protected override Task OnInit(object parameter = null)
         {
             if(parameter != null)
             {
@@ -28,7 +28,7 @@ namespace XamarinMvvm.Sample.ViewModel
                 else
                     UserName = parameter.ToString();
             }
-            return base.OnInt(parameter);
+            return base.OnInit(parameter);
         }
 
         private void OnTab()
