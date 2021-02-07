@@ -10,48 +10,46 @@ namespace XamarinMvvm.Sample.ViewModel
         public AccountsViewModel()
         {
             LogoutCommand = new AsyncCommand(OnLogout);
-            TabCommand = new AsyncCommand(OnTab);
+            NavigationCommand = new AsyncCommand<string>(OnNavigationAsync);
             Title = "Accounts";
         }
 
         public ICommand LogoutCommand { get; }
-        public ICommand TabCommand { get; }
+        public ICommand NavigationCommand { get; }
         public string UserName { get; set; }
-        public bool IsNonContainerNavigation { get; set; }
 
         protected override void OnInit(object parameter = null)
         {
             if (parameter != null)
             {
-                if (parameter is bool root)
-                    IsNonContainerNavigation = root;
-                else
-                    UserName = parameter.ToString();
+                UserName = parameter.ToString();
             }
         }
 
-        private void OnTab()
+        private async Task OnNavigationAsync(string page)
         {
-            if (IsNonContainerNavigation)
+            switch(page)
             {
-                PageNavigation.NavigateToAsync<HomeTabbedViewModel>(UserName);
-            }
-            else
-            {
-                var tabbedContainer = new TabbedPageContainer();
-                tabbedContainer.AddTab<HomeViewModel>(null, "Home", null);
-                tabbedContainer.AddTab<CatalogViewModel>(null, "Catalog", null);
-                tabbedContainer.AddTab<AccountsViewModel>(UserName, "Accounts", null);
-                PageNavigation.NavigateToAsync(tabbedContainer);
-            }
-        }
+                case "Profile":
+                    await PageNavigation.NavigateToAsync<ProfileViewModel>(UserName);
+                    break;
 
-        protected override async Task OnNavigateBackAsync(object parameter = null)
-        {
-            if (IsNonContainerNavigation)
-                await RootNavigation.NavigateBackAsync();
-            else
-                await base.OnNavigateBackAsync(parameter);
+                case "Settings":
+                    await PageNavigation.NavigateToAsync<SettingsViewModel>();
+                    break;
+
+                case "History":
+                    await PageNavigation.NavigateToAsync<HistoryViewModel>();
+                    break;
+
+                case "Address":
+                    await PageNavigation.NavigateToAsync<AddressViewModel>();
+                    break;
+
+                case "Payments":
+                    await PageNavigation.NavigateToAsync<PaymentsViewModel>();
+                    break;
+            }
         }
 
         private void OnLogout()

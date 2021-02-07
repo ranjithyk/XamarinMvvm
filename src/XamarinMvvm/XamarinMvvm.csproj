@@ -12,5 +12,4 @@
   <ItemGroup>
     <ProjectReference Include="..\XamarinIoc\XamarinIoc.csproj" />
   </ItemGroup>
-
 </Project>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:BasePage
+    x:Class="XamarinMvvm.Sample.Page.PaymentsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:XamarinMvvm.Sample.Page">
+    <ContentPage.Content>
+        <StackLayout Margin="0,10" Spacing="0">
+            <BoxView
+                BackgroundColor="LightGray"
+                HeightRequest="1"
+                HorizontalOptions="FillAndExpand" />
+            <StackLayout Padding="10" BackgroundColor="White">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Text="Credit Card" />
+                <Label Text="1234 23** **** **43" />
+            </StackLayout>
+            <BoxView
+                BackgroundColor="LightGray"
+                HeightRequest="1"
+                HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</pages:BasePage>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Page:BasePage
+    x:Class="XamarinMvvm.Sample.Page.ProductsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Page="clr-namespace:XamarinMvvm.Sample.Page">
+    <ContentPage.Content>
+        <CollectionView
+            Margin="10"
+            ItemsSource="{Binding Category.Products}"
+            SelectedItem="{Binding SelectedProduct}"
+            SelectionChangedCommand="{Binding ProductDetailsCommand}"
+            SelectionChangedCommandParameter="{Binding SelectedProduct}"
+            SelectionMode="Single">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    HorizontalItemSpacing="10"
+                    Orientation="Vertical"
+                    Span="2"
+                    VerticalItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame
+                        Padding="0"
+                        BorderColor="WhiteSmoke"
+                        CornerRadius="0"
+                        HasShadow="False">
+                        <Grid RowDefinitions="*, Auto, Auto" RowSpacing="0">
+                            <Image
+                                Aspect="AspectFit"
+                                HeightRequest="120"
+                                HorizontalOptions="FillAndExpand"
+                                Source="{Binding Image}" />
+                            <Label
+                                Grid.Row="1"
+                                Margin="10,10,10,6"
+                                FontSize="Small"
+                                LineBreakMode="TailTruncation"
+                                MaxLines="2"
+                                Text="{Binding Title}" />
+                            <Label
+                                Grid.Row="2"
+                                Margin="10,0,10,10"
+                                FontSize="Micro"
+                                Text="{Binding Price, StringFormat='Rs.{0:N}'}" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ContentPage.Content>
+</Page:BasePage>

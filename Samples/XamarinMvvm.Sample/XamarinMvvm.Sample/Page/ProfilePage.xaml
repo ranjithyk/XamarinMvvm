@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:BasePage
+    x:Class="XamarinMvvm.Sample.Page.ProfilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:XamarinMvvm.Sample.Page">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="2" VerticalOptions="FillAndExpand">
+                <StackLayout BackgroundColor="White">
+                    <Image
+                        HeightRequest="120"
+                        HorizontalOptions="CenterAndExpand"
+                        Source="ic_placeholder.png"
+                        WidthRequest="120" />
+                    <Label
+                        Margin="10"
+                        FontSize="Title"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="{Binding UserName}" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</pages:BasePage>

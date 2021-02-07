@@ -73,18 +73,11 @@ namespace XamarinMvvm.Sample.ViewModel
 
         private void TabPage()
         {
-            if (IsNonContainerNavigation)
-            {
-                RootNavigation.SwitchRootWithNavigation<HomeTabbedViewModel>(UserName);
-            }
-            else
-            {
-                var tabbedContainer = new TabbedNavigationPageContainer();
-                tabbedContainer.AddTab<HomeViewModel>(true, "Home", null);
-                tabbedContainer.AddTab<CatalogViewModel>(null, "Catalog", null);
-                tabbedContainer.AddTab<AccountsViewModel>(UserName, "Accounts", null);
-                PageNavigation.NavigateToAsync(tabbedContainer);
-            }
+            var tabbedContainer = new TabbedNavigationPageContainer();
+            tabbedContainer.AddTab<CatalogViewModel>(null, "Catalog", null);
+            tabbedContainer.AddTab<CartViewModel>(true, "Cart", null);
+            tabbedContainer.AddTab<AccountsViewModel>(UserName, "Accounts", null);
+            RootNavigation.SwitchRoot(tabbedContainer);
         }
 
         private async Task OnRegister()

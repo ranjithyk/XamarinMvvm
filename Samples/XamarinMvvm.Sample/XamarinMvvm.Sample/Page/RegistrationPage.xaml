@@ -6,42 +6,41 @@
     xmlns:pages="clr-namespace:XamarinMvvm.Sample.Page"
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <Grid
-            BackgroundColor="WhiteSmoke"
-            ColumnDefinitions="*, *, *"
-            RowDefinitions="*,Auto,*">
-            <StackLayout
+        <Grid ColumnDefinitions="*, 8*, *" RowDefinitions="*,Auto,*">
+            <Frame
                 Grid.Row="1"
                 Grid.Column="1"
                 Padding="20,30"
                 BackgroundColor="White"
-                Spacing="20">
-                <Label
-                    Margin="20"
-                    FontSize="24"
-                    HorizontalOptions="CenterAndExpand"
-                    Text="Register"
-                    VerticalOptions="CenterAndExpand" />
-                <Entry
-                    HorizontalOptions="FillAndExpand"
-                    Placeholder="Enter Username"
-                    Text="{Binding UserName}" />
-                <Entry
-                    HorizontalOptions="FillAndExpand"
-                    Placeholder="Enter Password"
-                    Text="{Binding Password}" />
-                <Label
-                    FontSize="12"
-                    HorizontalOptions="CenterAndExpand"
-                    Text="{Binding Message}"
-                    TextColor="OrangeRed" />
-                <Button
-                    BackgroundColor="AliceBlue"
-                    Command="{Binding RegisterCommand}"
-                    Text="Register"
-                    TextColor="BlueViolet" />
+                HasShadow="False">
+                <StackLayout Spacing="20">
+                    <Label
+                        Margin="20"
+                        FontSize="24"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Register"
+                        VerticalOptions="CenterAndExpand" />
+                    <Entry
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Enter Username"
+                        Text="{Binding UserName}" />
+                    <Entry
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Enter Password"
+                        Text="{Binding Password}" />
+                    <Label
+                        FontSize="12"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="{Binding Message}"
+                        TextColor="OrangeRed" />
+                    <Button
+                        BackgroundColor="AliceBlue"
+                        Command="{Binding RegisterCommand}"
+                        Text="Register"
+                        TextColor="BlueViolet" />
 
-            </StackLayout>
+                </StackLayout>
+            </Frame>
         </Grid>
     </ContentPage.Content>
 </pages:BasePage>

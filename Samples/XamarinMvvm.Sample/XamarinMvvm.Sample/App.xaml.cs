@@ -1,5 +1,6 @@
 ﻿using Xamarin.Forms;
 using XamarinMvvm.Sample.ViewModel;
+using XamarinMvvm.Sample.Services;
 
 namespace XamarinMvvm.Sample
 {
@@ -8,6 +9,7 @@ namespace XamarinMvvm.Sample
         public App()
         {
             InitializeComponent();
+            MvvmIoc.Container.Register<ICatalogService, CatalogService>();
         }
 
         protected override void OnStart()

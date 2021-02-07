@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:BasePage
+    x:Class="XamarinMvvm.Sample.Page.ProductDetailsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:XamarinMvvm.Sample.Page">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10" BackgroundColor="White">
+                <Image
+                    HeightRequest="200"
+                    HorizontalOptions="FillAndExpand"
+                    Source="{Binding Product.Image}" />
+                <Label FontSize="Title" Text="{Binding Product.Title}" />
+                <Label FontSize="Header" Text="{Binding Product.Price, StringFormat='Rs. {0:N}'}" />
+                <Label FontSize="Small" Text="{Binding Product.Description}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</pages:BasePage>

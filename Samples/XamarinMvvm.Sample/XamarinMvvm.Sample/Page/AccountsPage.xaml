@@ -5,49 +5,91 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:XamarinMvvm.Sample.Page">
     <ContentPage.Content>
-        <StackLayout>
-            <Label
-                FontSize="Header"
-                HorizontalOptions="CenterAndExpand"
-                Text="{Binding UserName, StringFormat='Welcome {0}'}" />
+        <ScrollView>
+            <StackLayout Spacing="2" VerticalOptions="FillAndExpand">
+                <StackLayout BackgroundColor="White">
+                    <Image
+                        HeightRequest="120"
+                        HorizontalOptions="CenterAndExpand"
+                        Source="ic_placeholder.png"
+                        WidthRequest="120" />
+                    <Label
+                        Margin="10"
+                        FontSize="Title"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="{Binding UserName}" />
+                </StackLayout>
 
-            <StackLayout
-                Margin="0,16"
-                HorizontalOptions="CenterAndExpand"
-                Orientation="Horizontal"
-                Spacing="60"
-                VerticalOptions="EndAndExpand">
+                <StackLayout
+                    Margin="0,10,0,0"
+                    Padding="16"
+                    BackgroundColor="White"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigationCommand}" CommandParameter="Profile" />
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="Account" />
+                    <Label HorizontalOptions="EndAndExpand" Text="&gt;" />
+                </StackLayout>
 
-                <Button
-                    BackgroundColor="Transparent"
-                    Command="{Binding BackCommand}"
-                    Text="Back"
-                    TextColor="BlueViolet"
-                    VerticalOptions="End" />
+                <StackLayout
+                    Padding="16"
+                    BackgroundColor="White"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigationCommand}" CommandParameter="Settings" />
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="Settings" />
+                    <Label HorizontalOptions="EndAndExpand" Text="&gt;" />
+                </StackLayout>
 
-                <StackLayout>
-                    <StackLayout Orientation="Horizontal" Spacing="0">
-                        <CheckBox IsChecked="{Binding IsNonContainerNavigation}" Color="BlueViolet" />
-                        <Label
-                            Text="Non Container Navigation"
-                            VerticalOptions="Center"
-                            VerticalTextAlignment="Center" />
-                    </StackLayout>
-                    <Button
-                        BackgroundColor="Transparent"
-                        Command="{Binding TabCommand}"
-                        Text="New Tab navigation"
-                        TextColor="BlueViolet" />
+                <StackLayout
+                    Padding="16"
+                    BackgroundColor="White"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigationCommand}" CommandParameter="History" />
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="History" />
+                    <Label HorizontalOptions="EndAndExpand" Text="&gt;" />
+                </StackLayout>
+
+                <StackLayout
+                    Padding="16"
+                    BackgroundColor="White"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigationCommand}" CommandParameter="Address" />
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="Address" />
+                    <Label HorizontalOptions="EndAndExpand" Text="&gt;" />
+                </StackLayout>
+
+                <StackLayout
+                    Padding="16"
+                    BackgroundColor="White"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigationCommand}" CommandParameter="Payments" />
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="Payments" />
+                    <Label HorizontalOptions="EndAndExpand" Text="&gt;" />
                 </StackLayout>
 
                 <Button
-                    BackgroundColor="AliceBlue"
+                    Margin="0,10"
+                    BackgroundColor="White"
                     Command="{Binding LogoutCommand}"
                     Text="Logout"
-                    TextColor="BlueViolet"
-                    VerticalOptions="End" />
-            </StackLayout>
+                    TextColor="OrangeRed"
+                    VerticalOptions="EndAndExpand" />
 
-        </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </pages:BasePage>
