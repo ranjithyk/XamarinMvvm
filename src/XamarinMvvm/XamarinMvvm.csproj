@@ -2,8 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Ranjith</Authors>
+    <Description>Mvvm framework built for Xamarin forms application. Provides ViewModel Navigation, Auto wire (Setting Binding context) for view, Cusomizable Navigation Containers, Contains built-in IOC</Description>
+    <RepositoryUrl>https://github.com/ranjithyk/XamarinMvvm</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/ranjithyk/Xamarin.Basics/blob/master/README.md</PackageProjectUrl>
+    <Copyright>Copyright (c) 2021 Ranjith</Copyright>
+    <RepositoryType>git</RepositoryType>
+    <PackageIcon>Icon.png</PackageIcon>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageTags>Xamarin.Forms, Mvvm</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
@@ -11,5 +22,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\XamarinIoc\XamarinIoc.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\" />
   </ItemGroup>
 </Project>
