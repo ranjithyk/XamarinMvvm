@@ -5,7 +5,7 @@
     <Authors>Ranjith</Authors>
     <Description>Mvvm framework built for Xamarin forms application. Provides ViewModel Navigation, Auto wire (Setting Binding context) for view, Cusomizable Navigation Containers, Contains built-in IOC</Description>
     <RepositoryUrl>https://github.com/ranjithyk/XamarinMvvm</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/ranjithyk/Xamarin.Basics/blob/master/README.md</PackageProjectUrl>
+    <PackageProjectUrl>https://ranjithyk.github.io/XamarinMvvm/</PackageProjectUrl>
     <Copyright>Copyright (c) 2021 Ranjith</Copyright>
     <RepositoryType>git</RepositoryType>
     <PackageIcon>Icon.png</PackageIcon>
@@ -13,6 +13,8 @@
     <PackageTags>Xamarin.Forms, Mvvm</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackOnBuild>true</PackOnBuild>
+    <PackageVersion>1.0.1</PackageVersion>
   </PropertyGroup>
   
   <ItemGroup>
@@ -23,7 +25,20 @@
   <ItemGroup>
     <ProjectReference Include="..\XamarinIoc\XamarinIoc.csproj" />
   </ItemGroup>
+    
   <ItemGroup>
-    <Folder Include="Assets\" />
+    <None Include="Assets\Icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <Content Include="Assets\README.md">
+      <Pack>true</Pack>
+      <PackagePath></PackagePath>
+    </Content>
+    <None Include="Assets\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
+ 
 </Project>
