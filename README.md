@@ -33,3 +33,20 @@ Extend App.Xaml.cs class from IApplication and start the application.
         }
     }
 ```
+
+Provide two interfaces
+```csharp
+    public interface INavigationService
+    public interface IPageNavigation
+```
+
+**INavigationService** Handles application start and the container navigations.
+```csharp
+    void StartApplication(IApplication application)
+    void StartApplication(IApplication application, IPageContainer pageContainer)
+    void StartApplication<TViewModel>(IApplication application, bool navigatable, object parameter = null) where TViewModel : LifeCycleAwareViewModel
+    void SwitchRoot(IPageContainer pageContainer)
+    void SwitchRoot<TViewModel>(object parameter = null) where TViewModel : LifeCycleAwareViewModel;
+    void SwitchRootWithNavigation<TViewModel>(object parameter = null) where TViewModel : LifeCycleAwareViewModel;
+```
+
