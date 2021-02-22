@@ -36,8 +36,8 @@ Extend App.Xaml.cs class from IApplication and start the application.
 
 Provide two interfaces
 ```csharp
-    public interface INavigationService
-    public interface IPageNavigation
+    public interface INavigationService {}
+    public interface IPageNavigation {}
 ```
 
 **INavigationService** Handles application start and the container navigations.
