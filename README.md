@@ -34,7 +34,8 @@ Extend App.Xaml.cs class from IApplication and start the application.
     }
 ```
 
-Provide two interfaces
+Each ViewModel has to extend from LifeCycleAwareViewModel and LifeCycleAwareViewModel contains two interfaces which helps in initializations and navigations
+
 ```csharp
     public interface INavigationService {}
     public interface IPageNavigation {}
