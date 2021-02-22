@@ -50,3 +50,14 @@ Provide two interfaces
     void SwitchRootWithNavigation<TViewModel>(object parameter = null) where TViewModel : LifeCycleAwareViewModel;
 ```
 
+**IPageNavigation** Handles navigation between pages though viewmodel navigation.
+```csharp
+    Task NavigateToAsync(IPageContainer pageContainer, bool animate = true);
+    Task NavigateToAsync<TViewModel>(object parameter = null, bool animate = true) where TViewModel : LifeCycleAwareViewModel;
+    Task NavigateToModalAsync<TViewModel>(object parameter = null, bool animate = true) where TViewModel : LifeCycleAwareViewModel;
+    Task NavigateBackAsync();
+    Task NavigateBackAsync(object parameter);
+    Task NavigateToRootAsync();
+    Task StartNewNavigationAsync<TViewModel>(object parameter = null, bool animate = true) where TViewModel : LifeCycleAwareViewModel;
+```
+
