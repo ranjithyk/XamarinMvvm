@@ -13,3 +13,23 @@ When we are implementing mvvm based architecture first thing to fallow is, our *
 6. Customizable setting Binding Context logic (used during Auto-Wiring)
 
 To get started, It is as easy as in default Xamarin.Forms applications, Very minimal confgurations required.
+
+### Initialization and Start
+Extend App.Xaml.cs class from IApplication and start the application.
+
+```csharp
+
+    public partial class App : Application, IApplication
+    {
+        public App()
+        {
+            InitializeComponent();
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            MvvmIoc.NavigationService.StartApplication<LoginViewModel>(this, true);
+        }
+    }
+```
