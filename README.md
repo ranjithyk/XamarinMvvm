@@ -160,7 +160,7 @@ Navigate to new page with new page container
 ```
 
 Navigate to new page with new Navigation container
-```charp
+```csharp
     /// <summary>
     /// Starts the new navigation asynchronously.
     /// </summary>
@@ -172,7 +172,7 @@ Navigate to new page with new Navigation container
 ```
 
 ### Root Navigations
-```charp
+```csharp
     /// <summary>
     /// Switches the root.
     /// </summary>
