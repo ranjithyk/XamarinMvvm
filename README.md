@@ -38,27 +38,41 @@ Each ViewModel has to extend from LifeCycleAwareViewModel and LifeCycleAwareView
 
 ```csharp
     public interface INavigationService {}
+    
     public interface IPageNavigation {}
 ```
 
 **INavigationService** Handles application start and the container navigations.
 ```csharp
+
     void StartApplication(IApplication application);
+    
     void StartApplication(IApplication application, IPageContainer pageContainer);
+    
     void StartApplication<TViewModel>(IApplication application, bool navigatable, object parameter = null) where TViewModel : LifeCycleAwareViewModel;
+    
     void SwitchRoot(IPageContainer pageContainer);
+    
     void SwitchRoot<TViewModel>(object parameter = null) where TViewModel : LifeCycleAwareViewModel;
+    
     void SwitchRootWithNavigation<TViewModel>(object parameter = null) where TViewModel : LifeCycleAwareViewModel;
 ```
 
 **IPageNavigation** Handles navigation between pages though viewmodel navigation.
 ```csharp
+
     Task NavigateToAsync(IPageContainer pageContainer, bool animate = true);
+    
     Task NavigateToAsync<TViewModel>(object parameter = null, bool animate = true) where TViewModel : LifeCycleAwareViewModel;
+    
     Task NavigateToModalAsync<TViewModel>(object parameter = null, bool animate = true) where TViewModel : LifeCycleAwareViewModel;
+    
     Task NavigateBackAsync();
+    
     Task NavigateBackAsync(object parameter);
+    
     Task NavigateToRootAsync();
+    
     Task StartNewNavigationAsync<TViewModel>(object parameter = null, bool animate = true) where TViewModel : LifeCycleAwareViewModel;
 ```
 
