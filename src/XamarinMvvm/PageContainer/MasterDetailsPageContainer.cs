@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace XamarinMvvm.PageContainer
+namespace XamarinMvvm
 {
     /// <summary>
     /// MasterDetails PageContainer
@@ -15,7 +15,7 @@ namespace XamarinMvvm.PageContainer
         /// </summary>
         /// <typeparam name="TViewModel">The type of the view model.</typeparam>
         /// <param name="parameter">The parameter.</param>
-        public void SetMaster<TViewModel>(object parameter) where TViewModel : LifeCycleAwareViewModel
+        public void SetMaster<TViewModel>(object parameter = null) where TViewModel : LifeCycleAwareViewModel
         {
             var page = MvvmIoc.Container.Resolve<IPageNavigation>().FindAndCreatePage<TViewModel>(parameter);
             Master = page;
@@ -26,11 +26,9 @@ namespace XamarinMvvm.PageContainer
         /// </summary>
         /// <typeparam name="TViewModel">The type of the view model.</typeparam>
         /// <param name="parameter">The parameter.</param>
-        /// <param name="title">The title.</param>
-        /// <param name="icon">The icon.</param>
-        public void SetDetails<TViewModel>(object parameter, string title, string icon) where TViewModel : LifeCycleAwareViewModel
+        public void SetDetails<TViewModel>(object parameter = null) where TViewModel : LifeCycleAwareViewModel
         {
-            var page = new NavigationPageContainer<TViewModel>(parameter) { Title = title, IconImageSource = icon }.GetPage();
+            var page = new NavigationPageContainer<TViewModel>(parameter).GetPage();
             Detail = page;
         }
 
