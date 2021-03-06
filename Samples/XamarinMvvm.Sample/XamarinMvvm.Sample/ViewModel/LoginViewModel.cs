@@ -73,6 +73,11 @@ namespace XamarinMvvm.Sample.ViewModel
 
         private void TabPage()
         {
+            //var masterDetails = new MasterDetailsPageContainer();
+            //masterDetails.SetMaster<AccountsViewModel>(UserName);
+            //masterDetails.SetDetails<CatalogViewModel>();
+            //RootNavigation.SwitchRoot(masterDetails);
+
             var tabbedContainer = new TabbedNavigationPageContainer();
             tabbedContainer.AddTab<CatalogViewModel>(null, "Catalog", null);
             tabbedContainer.AddTab<CartViewModel>(true, "Cart", null);
