@@ -134,7 +134,7 @@ Tabbed page with dedicated navation container for each tab.
     }
 ```
 
-###Navigations
+### Navigations
 
 Navigate to new page with or without paramerter through Viewmodel
 ```csharp
@@ -171,7 +171,7 @@ Navigate to new page with new Navigation container
     Task StartNewNavigationAsync<TViewModel>(object parameter = null, bool animate = true) where TViewModel : LifeCycleAwareViewModel;
 ```
 
-###Root Navigations
+### Root Navigations
 ```charp
     /// <summary>
     /// Switches the root.
