@@ -1,4 +1,5 @@
 ﻿using PropertyChanged;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -7,6 +8,8 @@ namespace XamarinMvvm.Sample.ViewModel
     [AddINotifyPropertyChangedInterface]
     public class AccountsViewModel : BaseViewModel
     {
+        public event Action<string> OnSwitchDetails;
+
         public AccountsViewModel()
         {
             LogoutCommand = new AsyncCommand(OnLogout);
@@ -28,7 +31,9 @@ namespace XamarinMvvm.Sample.ViewModel
 
         private async Task OnNavigationAsync(string page)
         {
-            switch(page)
+            OnSwitchDetails?.Invoke(page);
+
+            switch (page)
             {
                 case "Profile":
                     await PageNavigation.NavigateToAsync<ProfileViewModel>(UserName);

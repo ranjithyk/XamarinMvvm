@@ -73,16 +73,21 @@ namespace XamarinMvvm.Sample.ViewModel
 
         private void TabPage()
         {
-            //var masterDetails = new MasterDetailsPageContainer();
-            //masterDetails.SetMaster<AccountsViewModel>(UserName);
-            //masterDetails.SetDetails<CatalogViewModel>();
-            //RootNavigation.SwitchRoot(masterDetails);
-
             var tabbedContainer = new TabbedNavigationPageContainer();
             tabbedContainer.AddTab<CatalogViewModel>(null, "Catalog", null);
             tabbedContainer.AddTab<CartViewModel>(true, "Cart", null);
             tabbedContainer.AddTab<AccountsViewModel>(UserName, "Accounts", null);
             RootNavigation.SwitchRoot(tabbedContainer);
+
+            // Un comment this code to test Master details page
+            //var masterDetails = new MasterDetailsPageContainer();
+            //masterDetails.SetMaster<AccountsViewModel>(UserName);
+            //masterDetails.SetDetails<CatalogViewModel>();
+            //RootNavigation.SwitchRoot(masterDetails);
+
+            // Uncomment this code to test custom master details page
+            //var container = new CustomContainer.CustomMasterDetailsPageContainer(UserName);
+            //RootNavigation.SwitchRoot(container);
         }
 
         private async Task OnRegister()
