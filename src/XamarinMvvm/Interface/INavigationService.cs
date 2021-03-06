@@ -9,12 +9,12 @@ namespace XamarinMvvm
     public interface INavigationService
     {
         /// <summary>
-        /// Applications this instance.
+        /// Application's instance.
         /// </summary>
         /// <returns></returns>
         IApplication Application();
         /// <summary>
-        /// Navigations this instance.
+        /// Navigation instance.
         /// </summary>
         /// <returns></returns>
         INavigation Navigation();

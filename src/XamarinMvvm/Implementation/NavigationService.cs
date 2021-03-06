@@ -4,7 +4,7 @@ using Xamarin.Forms;
 namespace XamarinMvvm
 {
     /// <summary>
-    /// Applicatio NavigationService
+    /// Application NavigationService
     /// </summary>
     /// <seealso cref="XamarinMvvm.INavigationService" />
     public class NavigationService : INavigationService
@@ -15,7 +15,7 @@ namespace XamarinMvvm
         private IApplication _application;
 
         /// <summary>
-        /// Applications this instance.
+        /// Application instance.
         /// </summary>
         /// <returns></returns>
         public IApplication Application()
@@ -24,7 +24,7 @@ namespace XamarinMvvm
         }
 
         /// <summary>
-        /// Navigations this instance.
+        /// Navigation instance.
         /// </summary>
         /// <returns></returns>
         public INavigation Navigation()
