@@ -58,7 +58,7 @@ Each ViewModel has to extend from LifeCycleAwareViewModel and LifeCycleAwareView
     void SwitchRootWithNavigation<TViewModel>(object parameter = null) where TViewModel : LifeCycleAwareViewModel;
 ```
 
-**IPageNavigation** Handles navigation between pages though viewmodel navigation.
+**IPageNavigation** Handles navigation between pages through viewmodel navigation.
 ```csharp
 
     Task NavigateToAsync(IPageContainer pageContainer, bool animate = true);
@@ -76,3 +76,122 @@ Each ViewModel has to extend from LifeCycleAwareViewModel and LifeCycleAwareView
     Task StartNewNavigationAsync<TViewModel>(object parameter = null, bool animate = true) where TViewModel : LifeCycleAwareViewModel;
 ```
 
+### Page Container
+
+**IPageContainer** provides just one method **GetPage()**. Customize and implement your own page container by inheriting this interface.
+
+### Simple Built-In Navigation containers
+
+**NavigationPageContainer**
+Generates Xamarin.Forms NavigationPage object for the provided TViewModel Type, which in turn can be used for further navigation.
+
+```csharp
+    public class NavigationPageContainer<TViewModel> : NavigationPage, IPageContainer where TViewModel : LifeCycleAwareViewModel
+```
+
+**TabbedPageContainer**
+Simple TabbedPage without Navigatable tabs. Provides **AddTabs()** method to add your Viewmodel as tabs.
+
+```csharp
+    public class TabbedPageContainer : TabbedPage, IPageContainer
+```
+
+```csharp
+    /// <summary>
+    /// Adds the tab.
+    /// </summary>
+    /// <typeparam name="TViewModel">The type of the view model.</typeparam>
+    /// <param name="parameter">The parameter.</param>
+    /// <param name="title">The title.</param>
+    /// <param name="icon">The icon.</param>
+    public void AddTab<TViewModel>(object parameter, string title, string icon) where TViewModel : LifeCycleAwareViewModel
+    {
+        var page = MvvmIoc.Container.Resolve<IPageNavigation>().FindAndCreatePage<TViewModel>(parameter);
+        page.Title = title;
+        page.IconImageSource = icon;
+        Children.Add(page);
+    }
+```
+
+**TabbedNavigationPageContainer**
+Tabbed page with dedicated navation container for each tab. 
+
+```csharp
+    public class TabbedNavigationPageContainer : TabbedPage, IPageContainer
+```
+
+```csharp
+    /// <summary>
+    /// Adds the tab.
+    /// </summary>
+    /// <typeparam name="TViewModel">The type of the view model.</typeparam>
+    /// <param name="parameter">The parameter.</param>
+    /// <param name="title">The title.</param>
+    /// <param name="icon">The icon.</param>
+    public void AddTab<TViewModel>(object parameter, string title, string icon) where TViewModel : LifeCycleAwareViewModel
+    {
+        Children.Add(new NavigationPageContainer<TViewModel>(parameter) { Title = title, IconImageSource = icon }.GetPage());
+    }
+```
+
+### Navigations
+
+Navigate to new page with or without paramerter through Viewmodel
+```csharp
+    /// <summary>
+    /// Navigates to new page asynchronously.
+    /// </summary>
+    /// <typeparam name="TViewModel">The type of the view model.</typeparam>
+    /// <param name="parameter">The parameter.</param>
+    /// <param name="animate">if set to <c>true</c> [animate].</param>
+    /// <returns></returns>
+    Task NavigateToAsync<TViewModel>(object parameter = null, bool animate = true) where TViewModel : LifeCycleAwareViewModel;
+```
+
+Navigate to new page with new page container
+```csharp
+    /// <summary>
+    /// Navigates to new page asynchronously with new page container.
+    /// </summary>
+    /// <param name="pageContainer">The page container.</param>
+    /// <param name="animate">if set to <c>true</c> [animate].</param>
+    /// <returns></returns>
+    Task NavigateToAsync(IPageContainer pageContainer, bool animate = true);
+```
+
+Navigate to new page with new Navigation container
+```csharp
+    /// <summary>
+    /// Starts the new navigation asynchronously.
+    /// </summary>
+    /// <typeparam name="TViewModel">The type of the view model.</typeparam>
+    /// <param name="parameter">The parameter.</param>
+    /// <param name="animate">if set to <c>true</c> [animate].</param>
+    /// <returns></returns>
+    Task StartNewNavigationAsync<TViewModel>(object parameter = null, bool animate = true) where TViewModel : LifeCycleAwareViewModel;
+```
+
+### Root Navigations
+```csharp
+    /// <summary>
+    /// Switches the root.
+    /// </summary>
+    /// <param name="pageContainer">The page container.</param>
+    void SwitchRoot(IPageContainer pageContainer);
+    
+    
+    /// <summary>
+    /// Switches the root.
+    /// </summary>
+    /// <typeparam name="TViewModel">The type of the view model.</typeparam>
+    /// <param name="parameter">The parameter.</param>
+    void SwitchRoot<TViewModel>(object parameter = null) where TViewModel : LifeCycleAwareViewModel;
+    
+    
+    /// <summary>
+    /// Switches the root with navigation.
+    /// </summary>
+    /// <typeparam name="TViewModel">The type of the view model.</typeparam>
+    /// <param name="parameter">The parameter.</param>
+    void SwitchRootWithNavigation<TViewModel>(object parameter = null) where TViewModel : LifeCycleAwareViewModel;
+```
